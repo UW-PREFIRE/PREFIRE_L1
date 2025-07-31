@@ -1,0 +1,111 @@
+{
+"_JSON_COMMENTS_": {
+  "purpose": {"to_describe": "the metadata and form of a NetCDF-format file"},
+  
+  "abbrev_widget_len": {
+       "units": "cubits",
+       "long_name": "abbreviated widget length",
+       "description": "an arbitrary example of a data variable",
+       "C_dimensions": ["atrack", "xtrack"],
+       "F_dimensions": ["xtrack", "atrack"],
+       "np_dtype": "float32", "fill_value": -9.999e3,
+       "compression": [4, true] },
+
+  "C_dimensions_are": { "for": "Python, C, C++, etc." },
+  "F_dimensions_are": { "for": "Fortran, MatLab, IDL, etc." },
+  "can_have_either": { "or_both_types": "of dimension definition" },
+  "for_an_unlimited_dimension": { "add_a_prefix_eg": "!U!time" },
+
+  "Global_Attributes": { "group": "can be empty or omitted" },
+  "xxxxx_Group_Attributes": { "group": "can omit/empty, xxxxx is group name" },
+  "eg_value_known_globalgroup_att": { "value": 3.14159 },
+  "eg_value_pending_globalgroup_att": { "value": "!to_be_set!" } 
+},
+
+
+"Global_Attributes": {
+    "Format": {"value": "netCDF-4"},
+    "summary": {"value": "Based on 'prepped' PREFIRE Level-0 payload and bus telemetry data files, this file contains categorized types of all input science packet data frames, and will not be archived at a DAAC."},
+    "full_versionID": {"value": "!to_be_set!"},
+    "archival_versionID": {"value": " "},
+    "granule_ID": {"value": "!to_be_set!"},
+    "provenance": {"value": "!to_be_set!"},
+    "file_name": {"value": "!to_be_set!"},
+    "input_product_files": {"value": "!to_be_set!"},
+    "processing_algorithmID": {"value": "!to_be_set!"},
+    "processing_level": {"value": "0"},
+    "UTC_of_file_creation": {"value": "!to_be_set!"},
+    "spacecraft_ID": {"value": "!to_be_set!"},
+    "sensor_ID": {"value": "!to_be_set!"},
+    "ctime_coverage_start_s": {"value": "!to_be_set!"},
+    "ctime_coverage_end_s": {"value": "!to_be_set!"},
+    "UTC_coverage_start": {"value": "!to_be_set!"},
+    "UTC_coverage_end": {"value": "!to_be_set!"},
+    "additional_file_description": {"value": " "},
+    "netCDF_lib_version": {"value": "!to_be_set!"},
+    "orbit_sim_version": {"value": "!to_be_set!"},
+    "SRF_NEdR_version": {"value": "!to_be_set!"},
+    "n_usable_calseqs": {"value": "!to_be_set!"},
+    "is_this_a_final_product_file": {"value": "no"}
+},
+
+
+"TIRS_L0_Pld_Categorization_Group_Attributes": {
+    "mirror_ang_offset0_deg": {"value": "!to_be_set!"},
+    "bus_ctime_coverage_start": {"value": "!to_be_set!"},
+    "bus_ctime_coverage_end": {"value": "!to_be_set!"}
+},
+"TIRS_L0_Pld_Categorization": {
+    "ctime": {
+             "units": "seconds since 2000-01-01T00:00:00Z",
+             "long_name": "continuous_time at the science packet frame end",
+             "description": "similar to TAI, referenced to the epoch 2000-01-01T00:00:00 UTC, and valid at the end of the frame (i.e., end of TIRS image integration)",
+             "C_dimensions": ["atrack_scipkt"],
+             "F_dimensions": ["atrack_scipkt"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "scipkt_frame_type": {
+             "long_name": "science packet frame type",
+             "description": "the determined frame type category for each calibration-input science data frame. For SAT1 this is primarily based on data other than motor encoder values, while for SAT2, this is primarily based on on motor encoder values",
+             "flag_values": [0, 1, 10, 11, 12, 13, 20, 21, 22, 30, 31, 32, 33, 34, 40, 41, 42],
+             "flag_meanings": "[0] nominal obstgt, [1] possible obstgt, [10] nominal caltgt (cal-sequence), [11] possible caltgt, [12] nominal caltgt (non-cal-sequence), [13] possible caltgt (payload-on-but-safed), [20] nominal space (cal-sequence), [21] possible space, [22] nominal space (non-cal-sequence), [30] skew based on encoder only, [31] skew based on block frame count 1, [32] skew based on block frame count 2, [33] skew based on encoder + ROIC DN, [34] skew assumed via disposition, [40] hard stop (motor power off), [41] hard stop (motor power-level sentinel), [42] space aperture short scan",
+             "C_dimensions": ["atrack_scipkt"],
+             "F_dimensions": ["atrack_scipkt"],
+             "np_dtype": "int8", "fill_value": -99,
+             "compression": [4, true] },
+    "scipkt_bus_status_bitflags": {
+             "long_name": "science packet bus status bitflags",
+             "description": "integer composed of bit flags that contain boolean info about bus status for each calibration-input science data frame",
+             "value_meaning": "[b0] REFS_ESM is invalid?, [b1] ATT_DET is invalid?, [b2] REFS is invalid?, [b3] bus telemetry gap?, [4] spacecraft payload is powered off?",
+             "C_dimensions": ["atrack_scipkt"],
+             "F_dimensions": ["atrack_scipkt"],
+             "np_dtype": "uint8", "fill_value": 255,
+             "compression": [4, true] },
+    "scipkt_bus_events_bitflags": {
+             "long_name": "science packet bus events bitflags",
+             "description": "integer composed of bit flags that contain boolean info about bus events for each calibration-input science data frame",
+             "value_meaning": "[b0] ascending pass?, [b1] within moon umbra (eclipse)?, [b2] within Earth umbra (eclipse)?, [b3] radio is transmitting?, [b4] radio is active (rx or tx)?, [b5] within payload-on-but-safed (staring at internal cal target) bus maneuver period (start of bus_macro_44 motor hard stop (MHS) to start of bus_macro_45 MHS)?, [b6] bus slew (unknown)?, [b7] bus slew to radio-contact attitude?, [b8] bus slew to LVLH attitude?, [b9] bus slew to safe attitude?, [b10] bus slew to GPS-zenith-point attitude?, [b11] bus slew due to modeled sun avoidance (MSA)?",
+             "C_dimensions": ["atrack_scipkt"],
+             "F_dimensions": ["atrack_scipkt"],
+             "np_dtype": "uint16", "fill_value": 65535,
+	     "compression": [4, true] },
+    "mirror_aostart_ctime": {
+             "units": "seconds since 2000-01-01T00:00:00Z",
+             "long_name": "mirror angular-offset-start continuous_time",
+             "description": "within the calibration-input science data frame time-series, continuous_time at which the corresponding mirror angular offset value is first valid; similar to TAI, and referenced to the epoch 2000-01-01T00:00:00 UTC",
+             "C_dimensions": ["mangoffs_atr"],
+             "F_dimensions": ["mangoffs_atr"],
+             "np_dtype": "float64", "fill_value": -9.999e3,
+             "compression": [4, true],
+             "calendar": "standard" },
+    "mirror_ang_offset": {
+             "units": "degrees",
+             "long_name": "mirror angular offset",
+             "description": "within the calibration-input science data frame time-series, the time-dependent component of the angular offset of the pointing mirror (with respect to the nadir aperture boresight)",
+             "C_dimensions": ["mangoffs_atr"],
+             "F_dimensions": ["mangoffs_atr"],
+             "np_dtype": "float32", "fill_value": -9.999e3,
+             "compression": [4, true] }
+}
+}
