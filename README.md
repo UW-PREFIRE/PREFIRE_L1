@@ -2,7 +2,7 @@
 
 Package (written primarily in MatLab and Python) to produce the PREFIRE 1A-RAD and 1B-RAD science data products. These products provide spacecraft observation geometry and geolocated, calibrated TIRS radiances and brightness temperatures.
 
-This code is released under the terms of this [LICENSE](LICENSE).  The version of this package can be found in [VERSION.txt](VERSION.txt).
+This code is released under the terms of this [LICENSE](LICENSE).  The version of this package can be found in [VERSION.txt](VERSION.txt).  This is the codebase used to create the 'R01' release of the relevant PREFIRE data products.
 
 # Installation
 
@@ -80,7 +80,7 @@ DEM_ROOT_DIR  :  path (ending with `/tiles`) where the files of the tiled Copern
 
 ## Obtain and unpack ancillary and test data
 
-## Spectral Response Functions (SRFs)
+### Spectral Response Functions (SRFs)
 
 Spectral Response Function data (v13_2024-09-15) for the two Thermal InfraRed Spectrometer (TIRS) instruments aboard the dual NASA PREFIRE mission CubeSats are needed for this software package.  A zip-archive file containing that data can be downloaded from [here](https://zenodo.org/records/16638853).
 
